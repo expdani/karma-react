@@ -1,10 +1,10 @@
 export type iconKey = {
-  [key: string]: string;
+  [key: string]: any;
 };
 
 const iconKeys: iconKey = Object.freeze({
-  Dashboard: 'Dashboard',
-  Settings: 'Settings',
+  Dashboard: 'dashboard',
+  Settings: 'settings',
 });
 
 export default iconKeys;

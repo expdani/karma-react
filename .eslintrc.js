@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["airbnb-typescript-prettier"],
+  extends: ['airbnb-typescript-prettier'],
   rules: {
     'react/prop-types': 0,
     'react/destructuring-assignment': 0,

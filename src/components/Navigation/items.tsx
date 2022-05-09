@@ -1,16 +1,16 @@
 import iconKeys from '../Icon/iconKeys';
 import Routes from '../routeConfig';
 
-type navItem = {
+export type NavItem = {
   icon: string;
   title: string;
   route: string;
 };
 
-const navItems: navItem[] = [
+const navItems: NavItem[] = [
   {
     icon: iconKeys.Dashboard,
-    title: 'Home',
+    title: 'Dashboard',
     route: Routes.Dashboard,
   },
   {

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Test(): any {
+export default function Login(): any {
   return (
     <>
-      <h1>test</h1>
+      <h1>login</h1>
     </>
   );
 }

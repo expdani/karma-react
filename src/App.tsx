@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import SideNav from './components/Navigation';
-import Test from './components/Test';
+import Settings from './components/Settings';
 
 function App(): any {
   return (
@@ -10,7 +10,7 @@ function App(): any {
       <SideNav>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/test" element={<Test />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </SideNav>
     </>
