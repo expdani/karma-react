@@ -22,6 +22,7 @@ export default function NavItems(props: any) {
               justifyContent: open ? 'initial' : 'center',
               px: 2.5,
             }}
+            component="a"
           >
             <ListItemIcon
               sx={{

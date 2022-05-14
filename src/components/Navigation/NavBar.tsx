@@ -3,10 +3,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Button, Container } from '@mui/material';
+import LoginButton from './LoginButton';
+import UserButton from './UserButton';
 
 export default function NavBar(props: any) {
-  const { handleDrawerOpen, open } = props;
+  const { handleDrawerOpen, open, data } = props;
 
   return (
     <Toolbar>
@@ -22,13 +23,11 @@ export default function NavBar(props: any) {
       >
         <MenuIcon />
       </IconButton>
-      <div style={{ display: 'flex', width: '100%' }}>
+      <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
         <Typography variant="h6" noWrap component="div" style={{ flex: '1' }}>
           Discord bot
         </Typography>
-        <div>
-          <Button color="inherit">Login</Button>
-        </div>
+        <>{data ? <UserButton data={data} /> : <LoginButton />}</>
       </div>
     </Toolbar>
   );

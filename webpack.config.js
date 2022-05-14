@@ -8,7 +8,7 @@ module.exports = {
     filename: 'index.bundle.js',
     publicPath: '/',
   },
-  mode: process.env.NODE_ENV || 'development',
+  mode: 'production',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

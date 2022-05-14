@@ -14,6 +14,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import NavItems from './NavItems';
 import NavBar from './NavBar';
+import useUserDiscordData from '../../hooks/user/user';
+import { LinearProgress } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -98,6 +100,7 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer(props: any) {
   const theme = useTheme();
   const { children } = props;
+  const { data, error, loading } = useUserDiscordData();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -108,11 +111,18 @@ export default function MiniDrawer(props: any) {
     setOpen(false);
   };
 
+  if (loading)
+    return (
+      <Box sx={{ width: '100%' }}>
+        <LinearProgress />
+      </Box>
+    );
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <NavBar handleDrawerOpen={handleDrawerOpen} />
+        <NavBar handleDrawerOpen={handleDrawerOpen} data={data} />
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
