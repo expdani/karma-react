@@ -3,19 +3,16 @@ import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { CircularProgress } from '@mui/material';
 import NavItems from './NavItems';
 import NavBar from './NavBar';
 import useUserDiscordData from '../../hooks/user/user';
-import { LinearProgress } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -41,15 +38,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
-const PageHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
@@ -97,7 +85,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer(props: any) {
+export default function Navigation(props: any) {
   const theme = useTheme();
   const { children } = props;
   const { data, error, loading } = useUserDiscordData();
@@ -113,8 +101,17 @@ export default function MiniDrawer(props: any) {
 
   if (loading)
     return (
-      <Box sx={{ width: '100%' }}>
-        <LinearProgress />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          width: '100%',
+          position: 'absolute',
+        }}
+      >
+        <CircularProgress />
       </Box>
     );
 
@@ -139,8 +136,7 @@ export default function MiniDrawer(props: any) {
           <NavItems open={open} />
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <PageHeader />
+      <Box component="main" sx={{ flexGrow: 1, margin: '76px 24px 24px 24px' }}>
         {React.Children.toArray(children)}
       </Box>
     </Box>

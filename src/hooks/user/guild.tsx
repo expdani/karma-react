@@ -1,21 +1,22 @@
-import { useQuery } from '@apollo/client';
+import { ApolloError, useQuery } from '@apollo/client';
 import { GET_DISCORD_OWNER_GUILDS } from './gql';
 
-// export type SessionType = {
-//   access_token: string;
-//   user_id: string;
-//   discord_type: string;
-//   discord_token: string;
-//   created_at: string;
-// };
+export type DiscordGuildType = {
+  id: string;
+  name: string;
+  icon: string;
+  owner: boolean;
+  permissions: string;
+  features: JSON;
+};
 
-// type HookResponse = {
-//   loading: boolean;
-//   error: any;
-//   handleDiscordLogin: (code: string) => any;
-// };
+type HookResponse = {
+  loading: boolean;
+  error: ApolloError | undefined;
+  data: [DiscordGuildType];
+};
 
-export default function useUserDiscordOwnerServers(): any {
+export default function useUserDiscordOwnerGuilds(): HookResponse {
   const { data, error, loading } = useQuery(GET_DISCORD_OWNER_GUILDS);
 
   return {

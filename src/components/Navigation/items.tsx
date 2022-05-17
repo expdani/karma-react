@@ -1,4 +1,4 @@
-import iconKeys from '../icon/iconKeys';
+import iconKeys from '../Icon/iconKeys';
 import Routes from '../routeConfig';
 
 export type NavItem = {
