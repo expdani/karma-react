@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
-import Settings from './components/Settings';
+import Settings from './components/settings';
 import Login from './components/Login';
 import Callback from './components/Login/callback';
 import * as routeConfig from './components/routeConfig';

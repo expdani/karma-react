@@ -1,4 +1,4 @@
-import { ApolloError, useQuery } from '@apollo/client';
+import { ApolloError, NetworkStatus, useQuery } from '@apollo/client';
 import { GET_DISCORD_OWNER_GUILDS } from './gql';
 
 export type DiscordGuildType = {
@@ -14,14 +14,21 @@ type HookResponse = {
   loading: boolean;
   error: ApolloError | undefined;
   data: [DiscordGuildType];
+  networkStatus: NetworkStatus;
 };
 
 export default function useUserDiscordOwnerGuilds(): HookResponse {
-  const { data, error, loading } = useQuery(GET_DISCORD_OWNER_GUILDS);
+  const { data, error, loading, networkStatus } = useQuery(
+    GET_DISCORD_OWNER_GUILDS,
+    {
+      notifyOnNetworkStatusChange: true,
+    }
+  );
 
   return {
     data: data?.getUserDiscordServers,
     error,
     loading,
+    networkStatus,
   };
 }

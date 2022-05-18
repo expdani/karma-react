@@ -5,6 +5,7 @@ export type iconKey = {
 const iconKeys: iconKey = Object.freeze({
   Dashboard: 'dashboard',
   Settings: 'settings',
+  Save: 'save',
 });
 
 export default iconKeys;
