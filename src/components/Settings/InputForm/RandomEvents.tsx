@@ -1,10 +1,9 @@
 import * as React from 'react';
 import FormGroup from '@mui/material/FormGroup';
+import { makeStyles } from '@mui/styles';
 import { GuildSettingsType } from '../../../hooks/settings';
 import PropertySwitch from '../../form/PropertySwitch';
 import PageLoader from '../../page/PageLoader';
-import HelpIcon from '../../form/HelpIcon';
-import { makeStyles } from '@mui/styles';
 
 type Props = {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RandomEventsSettings(props: Props) {
+export default function RandomEventsSettings(props: Props): any {
   const { loading, handleChange, formValues } = props;
   const classes = useStyles();
   if (loading) return <PageLoader />;
@@ -32,7 +31,7 @@ export default function RandomEventsSettings(props: Props) {
           legend="Random events"
           defaultChecked={formValues.random_message_events_enabled}
           checked={formValues.random_message_events_enabled}
-          helperText="This enables or disables chat random events for your server."
+          helperText="With this you can enable or disable random chat events for your server."
           onChange={handleChange}
         />
       </FormGroup>

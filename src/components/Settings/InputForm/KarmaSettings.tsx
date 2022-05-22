@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function KarmaSettings(props: Props) {
+export default function KarmaSettings(props: Props): any {
   const { loading, handleChange, formValues } = props;
   const classes = useStyles();
   if (loading) return <PageLoader />;

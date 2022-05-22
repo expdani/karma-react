@@ -4,15 +4,13 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
-import { Icon } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
+
 import useGetGuildSettings from '../../../hooks/settings';
 import PageLoader from '../../page/PageLoader';
-import iconKeys from '../../icon/iconKeys';
 import KarmaSettings from './KarmaSettings';
 import useUpdateGuildSettings from '../../../hooks/settings/save';
 import RandomEventsSettings from './RandomEvents';
-import SimpleSnackbar from '../../snackbar/SimpleSnackbar';
+import SubmitButton from '../../form/SubmitButton';
 
 interface Props {
   children: React.ReactNode;
@@ -94,7 +92,11 @@ export default function InputForm(props: InputFormProps): any {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs onChange={handleTabChange} value={value}>
             <Tab label="Karma" {...a11yProps(0)} />
-            <Tab label="Random events" {...a11yProps(1)} />
+            <Tab
+              disabled={true}
+              label="Random events (soon)"
+              {...a11yProps(1)}
+            />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -112,16 +114,12 @@ export default function InputForm(props: InputFormProps): any {
           />
         </TabPanel>
 
-        <LoadingButton
-          color="secondary"
+        <SubmitButton
+          onSubmit={handleSubmit}
           loading={saveLoading}
-          loadingPosition="start"
-          startIcon={<Icon>{iconKeys.Save}</Icon>}
-          variant="contained"
-          onClick={handleSubmit}
-        >
-          Save
-        </LoadingButton>
+          text="Save"
+        />
       </Box>
     );
+  return <PageLoader />;
 }
