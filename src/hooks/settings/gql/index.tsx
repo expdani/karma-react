@@ -7,8 +7,17 @@ const GET_GUILD_SETTINGS = gql`
       random_message_events_enabled
       karma_enabled
       karma_reactions
-      created_at
-      updated_at
+    }
+  }
+`;
+
+export const UPDATE_GUILD_SETTINGS = gql`
+  mutation UpdateServerSettings($server_id: String!, $form: SettingsInput!) {
+    updateServerSettings(server_id: $server_id, form: $form) {
+      server_id
+      random_message_events_enabled
+      karma_enabled
+      karma_reactions
     }
   }
 `;

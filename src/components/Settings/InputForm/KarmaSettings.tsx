@@ -1,81 +1,58 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch, { SwitchProps } from '@mui/material/Switch';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
 import { GuildSettingsType } from '../../../hooks/settings';
+import PropertySwitch from '../../form/PropertySwitch';
+import PageLoader from '../../page/PageLoader';
+import HelpIcon from '../../form/HelpIcon';
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-  width: 62,
-  height: 34,
-  padding: 7,
-  '& .MuiSwitch-switchBase': {
-    margin: 1,
-    padding: 0,
-    transform: 'translateX(6px)',
-    '&.Mui-checked': {
-      color: '#fff',
-      transform: 'translateX(22px)',
-      '& .MuiSwitch-thumb:before': {
-        backgroundImage: `url('https://instagrow.nl/wp-content/uploads/2021/05/give-you-5-reddit-upvotes-and-a-comment.png')`,
-      },
-      '& + .MuiSwitch-track': {
-        opacity: 1,
-        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-      },
-    },
-  },
-  '& .MuiSwitch-thumb': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-    width: 32,
-    height: 32,
-    '&:before': {
-      content: "''",
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      left: 0,
-      top: 0,
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-      backgroundSize: 'contain',
-      backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-        '#fff'
-      )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
-    },
-  },
-  '& .MuiSwitch-track': {
-    opacity: 1,
-    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-    borderRadius: 20 / 2,
+type Props = {
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  formValues: GuildSettingsType;
+  loading: boolean;
+};
+
+const useStyles = makeStyles((theme) => ({
+  formContainer: {
+    display: 'flex',
+    maxWidth: '50%',
   },
 }));
 
-type Props = {
-  data: GuildSettingsType;
-};
-
 export default function KarmaSettings(props: Props) {
-  const { data } = props;
-  return (
-    <FormGroup>
-      <FormControlLabel
-        control={
-          <MaterialUISwitch sx={{ m: 1 }} defaultChecked={data.karma_enabled} />
-        }
-        label="Karma enabled"
-      />
-      <FormControlLabel
-        control={
-          <MaterialUISwitch
-            sx={{ m: 1 }}
-            defaultChecked={data.karma_reactions}
-          />
-        }
-        label="Karma reactions"
-      />
-    </FormGroup>
-  );
+  const { loading, handleChange, formValues } = props;
+  const classes = useStyles();
+  if (loading) return <PageLoader />;
+
+  if (formValues)
+    return (
+      <FormGroup className={classes.formContainer}>
+        <PropertySwitch
+          name="karma_enabled"
+          legend="Karma system"
+          defaultChecked={formValues.karma_enabled}
+          checked={formValues.karma_enabled}
+          helperText="With this option you can enable or disable the entire karma system. This includes automated reactions, related commands and counts."
+          onChange={handleChange}
+        />
+        <PropertySwitch
+          name="karma_reactions"
+          legend="Automated karma reactions"
+          defaultChecked={formValues.karma_reactions}
+          checked={formValues.karma_reactions}
+          helperText="With this option you can enable or disable automated karma (upvote and downvote) reactions on messages containing a file or a link."
+          onChange={handleChange}
+          disabled={!formValues?.karma_enabled}
+          label={
+            !formValues.karma_enabled ? (
+              <HelpIcon
+                tooltip="This option is only available when the karma system is enabled."
+                placement="right"
+              />
+            ) : null
+          }
+        />
+      </FormGroup>
+    );
+  return <PageLoader />;
 }

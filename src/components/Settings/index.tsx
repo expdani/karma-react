@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import useGetGuildSettings from '../../hooks/settings';
+import React, { useState } from 'react';
 import useUserDiscordOwnerGuilds from '../../hooks/user/guild';
+import PageHelp from '../page/PageHelp';
 import PageLoader from '../page/PageLoader';
 import PageTitle from '../page/PageTitle';
 import InputForm from './InputForm/InputForm';
@@ -24,6 +24,21 @@ export default function Settings(): any {
   return (
     <>
       <PageTitle title="Settings" />
+      <PageHelp
+        helpText={
+          <>
+            <div>
+              On this page you can manage the bot settings for your server. Down
+              below you can see a list of servers you own.
+            </div>
+            {`\n`}
+            <div>
+              Select a server and you will get an overview of options you can
+              manage.
+            </div>
+          </>
+        }
+      />
       <ServerSelect
         availableGuilds={data}
         selectedGuild={selectedGuild}

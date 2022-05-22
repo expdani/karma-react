@@ -133,7 +133,7 @@ export default function Navigation(props: any) {
         </DrawerHeader>
         <Divider />
         <List>
-          <NavItems open={open} />
+          <NavItems open={open} data={data} />
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, margin: '76px 24px 24px 24px' }}>

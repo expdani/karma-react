@@ -6,11 +6,13 @@ import ListItemText from '@mui/material/ListItemText';
 import navItems, { NavItem } from './items';
 
 export default function NavItems(props: any) {
-  const { open } = props;
+  const { open, data } = props;
 
   return (
     <>
-      {navItems.map((item: NavItem) => {
+      {navItems(data).map((item: NavItem | null | undefined) => {
+        if (!item) return null;
+
         const { icon, title, route } = item;
 
         return (

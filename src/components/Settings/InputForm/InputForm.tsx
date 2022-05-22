@@ -3,13 +3,16 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Icon } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import useGetGuildSettings from '../../../hooks/settings';
 import PageLoader from '../../page/PageLoader';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { Icon } from '@mui/material';
-import iconKeys from '../../Icon/iconKeys';
+import iconKeys from '../../icon/iconKeys';
 import KarmaSettings from './KarmaSettings';
+import useUpdateGuildSettings from '../../../hooks/settings/save';
+import RandomEventsSettings from './RandomEvents';
+import SimpleSnackbar from '../../snackbar/SimpleSnackbar';
 
 interface Props {
   children: React.ReactNode;
@@ -51,37 +54,71 @@ function a11yProps(index: number) {
 export default function InputForm(props: InputFormProps): any {
   const { selectedGuild } = props;
   const { data, error, loading } = useGetGuildSettings(selectedGuild);
+  const {
+    handleUpdate,
+    loading: saveLoading,
+    error: saveError,
+  } = useUpdateGuildSettings();
   const [value, setValue] = useState(0);
+  const [formValues, setFormValues] = useState(data);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.checked,
+    });
+  }
+
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
+  function handleSubmit(event: any): any {
+    const { server_id, ...settings } = formValues;
+    event.preventDefault();
+    handleUpdate(selectedGuild, settings);
+  }
+
+  useEffect(() => {
+    if (data) {
+      setFormValues(data);
+    }
+  }, [data]);
+
   if (error) return <h1>{error.message}</h1>;
   if (loading) return <PageLoader />;
-  if (data)
+
+  if (formValues)
     return (
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-          >
+          <Tabs onChange={handleTabChange} value={value}>
             <Tab label="Karma" {...a11yProps(0)} />
+            <Tab label="Random events" {...a11yProps(1)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <KarmaSettings data={data} />
+          <KarmaSettings
+            loading={loading}
+            handleChange={handleChange}
+            formValues={formValues}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <RandomEventsSettings
+            loading={loading}
+            handleChange={handleChange}
+            formValues={formValues}
+          />
         </TabPanel>
 
         <LoadingButton
           color="secondary"
-          // onClick={handleClick}
-          loading={loading}
+          loading={saveLoading}
           loadingPosition="start"
           startIcon={<Icon>{iconKeys.Save}</Icon>}
           variant="contained"
+          onClick={handleSubmit}
         >
           Save
         </LoadingButton>

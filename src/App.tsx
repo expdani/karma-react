@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import Navigation from './components/Navigation';
+import Dashboard from './components/dashboard';
+import Navigation from './components/navigation';
 import Settings from './components/settings';
-import Login from './components/Login';
-import Callback from './components/Login/callback';
+import Login from './components/login';
+import Callback from './components/login/callback';
 import * as routeConfig from './components/routeConfig';
 
 function App(): any {
-  // const { data, error, loading } = useUserDiscordData();
-
   return (
     <>
       <Navigation>
