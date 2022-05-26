@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import useUserDiscordOwnerGuilds from '../../hooks/user/guild';
 import PageHelp from '../page/PageHelp';
 import PageLoader from '../page/PageLoader';
 import PageTitle from '../page/PageTitle';
+import { DailyVotes } from './charts/DailyVotes';
+import { VotesPie } from './charts/VotesPie';
 
 export const GUILD_KEY = 'guild';
 
@@ -19,6 +20,9 @@ export default function Dashboard(): any {
           </>
         }
       />
+
+      <VotesPie />
+      {/* <DailyVotes /> */}
     </>
   );
 }

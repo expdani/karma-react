@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
-
 import useGetGuildSettings from '../../../hooks/settings';
 import PageLoader from '../../page/PageLoader';
 import KarmaSettings from './KarmaSettings';

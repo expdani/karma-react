@@ -5,12 +5,14 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-  labels: ['Red', 'Blue'],
+  labels: ['Upvotes', 'Downvotes'],
   datasets: [
     {
-      label: '# of Votes',
+      fill: true,
+      pointRadius: 0,
+      label: '# of votes',
       data: [12, 19],
-      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+      backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
       borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
       borderWidth: 1,
     },
@@ -18,5 +20,9 @@ export const data = {
 };
 
 export function VotesPie() {
-  return <Pie data={data} />;
+  return (
+    <div style={{ maxHeight: '200px', maxWidth: '200px' }}>
+      <Pie data={data} />
+    </div>
+  );
 }
