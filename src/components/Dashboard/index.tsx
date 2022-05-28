@@ -4,6 +4,8 @@ import PageLoader from '../page/PageLoader';
 import PageTitle from '../page/PageTitle';
 import { DailyVotes } from './charts/DailyVotes';
 import { VotesPie } from './charts/VotesPie';
+import HighlightCard from './HighlightCard';
+import Highlights from './Highlights';
 
 export const GUILD_KEY = 'guild';
 
@@ -21,6 +23,7 @@ export default function Dashboard(): any {
         }
       />
 
+      <Highlights />
       <VotesPie />
       {/* <DailyVotes /> */}
     </>

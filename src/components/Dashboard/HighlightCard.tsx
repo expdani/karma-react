@@ -1,20 +1,45 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+const useStyles = makeStyles({
+  highlight: {
+    marginRight: '16px',
+    width: '100%',
+  },
+});
 
 export default function HighlightCard() {
-  return <Card sx={{ minWidth: 275 }}></Card>;
+  const classes = useStyles();
+
+  return (
+    <Box
+      className={classes.highlight}
+      sx={{
+        bgcolor: 'background.paper',
+        boxShadow: 1,
+        borderRadius: 2,
+        p: 2,
+      }}
+    >
+      <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+      <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
+        98.3 K
+      </Box>
+      <Box
+        sx={{
+          color: 'success.dark',
+          display: 'inline',
+          fontWeight: 'bold',
+          mx: 0.5,
+          fontSize: 14,
+        }}
+      >
+        +18.77%
+      </Box>
+      <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}>
+        vs. last week
+      </Box>
+    </Box>
+  );
 }

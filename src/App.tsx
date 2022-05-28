@@ -6,8 +6,11 @@ import Settings from './components/settings';
 import Login from './components/login';
 import Callback from './components/login/callback';
 import * as routeConfig from './components/routeConfig';
+import useUserDiscordData from './hooks/user/user';
 
 function App(): any {
+  const { data, error, loading } = useUserDiscordData();
+
   return (
     <>
       <Navigation>
@@ -18,6 +21,14 @@ function App(): any {
           <Route
             path={routeConfig.default.Callback_$CODE}
             element={<Callback />}
+          />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
           />
         </Routes>
       </Navigation>

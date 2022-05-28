@@ -1,6 +1,7 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import { Box, Card, CardContent } from '@mui/material';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -21,8 +22,12 @@ export const data = {
 
 export function VotesPie() {
   return (
-    <div style={{ maxHeight: '200px', maxWidth: '200px' }}>
-      <Pie data={data} />
-    </div>
+    <Box sx={{ maxWidth: 275 }}>
+      <Card>
+        <CardContent>
+          <Pie data={data} />
+        </CardContent>
+      </Card>
+    </Box>
   );
 }

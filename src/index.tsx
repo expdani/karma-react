@@ -8,8 +8,10 @@ import {
 } from '@apollo/client';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
 import { AUTH_TOKEN } from './components/constants';
+import theme from './theme';
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -42,7 +44,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <BrowserRouter>
     <ApolloProvider client={client}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </ApolloProvider>
   </BrowserRouter>,
   document.getElementById('root')
