@@ -21,7 +21,7 @@ export default function Highlights(props: Props) {
   return (
     <div className={classes.highlightContainer}>
       <HighlightCard
-        title="Sessions"
+        title="Active sessions"
         primaryNumber={data.sessions.total}
         secondaryNumber={data.sessions.week}
         secondaryText="in the last 7 days"

@@ -2,6 +2,7 @@ import { Button, Menu, MenuItem, Fade } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { AUTH_TOKEN } from '../constants';
+import Routes from '../routeConfig';
 import DiscordAvatar from '../user/DiscordAvatar';
 
 const useStyles = makeStyles({
@@ -31,7 +32,7 @@ export default function UserButton(props: any): any {
   function handleLogout(): void {
     localStorage.removeItem(AUTH_TOKEN);
     setAnchorEl(null);
-    window.location.href = '/';
+    window.location.href = Routes.Dashboard;
   }
 
   return (

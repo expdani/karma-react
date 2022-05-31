@@ -12,8 +12,9 @@ import React, { useEffect, useState } from 'react';
 import useCountDown from 'react-countdown-hook';
 import { useSearchParams } from 'react-router-dom';
 import useDiscordLogin from '../../hooks/login/discordLogin';
-import { AUTH_TOKEN } from '../constants';
-import Retry from './retry';
+import { AUTH_TOKEN, SESSION_TOKEN } from '../constants';
+import PageLoader from '../page/PageLoader';
+import Routes from '../routeConfig';
 
 const useStyles = makeStyles({
   loginText: {
@@ -26,53 +27,103 @@ const useStyles = makeStyles({
   },
 });
 
-const initialTime = 5 * 1000; // 5 seconds
+const initialTime = 4 * 1000; // seconds
 const interval = 1000; // interval to change remaining time amount, defaults to 1000
 
-export default function Callback(): any {
+export default function Callback(): React.ReactElement {
   const classes = useStyles();
   const [searchParams] = useSearchParams();
-  const [open, setOpen] = useState(false);
+  const [started, setStarted] = useState(false);
   const code = searchParams.get('code');
   const [timeLeft, { start }] = useCountDown(initialTime, interval);
   const { handleLogin, loading, error, data } = useDiscordLogin();
 
   function handleRedirect(): void {
-    window.location.href = '/';
+    window.location.href = Routes.Dashboard;
+  }
+
+  function handleLogout(): void {
+    localStorage.removeItem(AUTH_TOKEN);
+    window.location.href = Routes.Dashboard;
+  }
+
+  function retryLogin(): void {
+    localStorage.removeItem(AUTH_TOKEN);
+    window.location.href = Routes.Login;
   }
 
   useEffect(() => {
     if (data?.access_token) {
       localStorage.setItem(AUTH_TOKEN, data?.access_token);
       start();
-      setOpen(true);
+      setStarted(true);
     } else handleLogin(code);
   }, [data]);
 
-  if (loading) return <h1>loading</h1>;
-  if (error) return <h1>{`Submission error! ${error.message}`}</h1>;
+  useEffect(() => {
+    if (timeLeft === 0 && started) {
+      handleRedirect();
+    }
+  }, [timeLeft]);
+
+  function SuccessfulLogin(): React.ReactElement {
+    return (
+      <>
+        <Typography className={classes.loginText}>
+          You have successfully logged in.
+        </Typography>
+        <Typography className={classes.redirectText}>
+          You will be redirected in {(timeLeft / 1000).toFixed(0)} seconds.
+        </Typography>
+      </>
+    );
+  }
+
+  function ErrorLogin(): React.ReactElement {
+    return (
+      <>
+        <Typography className={classes.loginText}>
+          Something went wrong while logging in..
+        </Typography>
+        <Typography className={classes.redirectText}>
+          {SESSION_TOKEN ? 'Please try again or logout.' : 'Please try again.'}
+        </Typography>
+      </>
+    );
+  }
 
   return (
     <div>
       <Dialog
-        open={open}
-        // onClose={handleClose}
+        open={!!true}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <Typography className={classes.loginText}>
-              You have successfully logged in.
-            </Typography>
-            <Typography className={classes.redirectText}>
-              You will be redirected in {(timeLeft / 1000).toFixed(0)} seconds.
-            </Typography>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleRedirect}>Redirect</Button>
-        </DialogActions>
+        {!loading ? (
+          <>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                {error ? <ErrorLogin /> : <SuccessfulLogin />}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              {error ? (
+                <>
+                  {SESSION_TOKEN ? (
+                    <Button onClick={handleLogout}>Logout</Button>
+                  ) : (
+                    <Button onClick={handleRedirect}>Cancel</Button>
+                  )}
+                  <Button onClick={retryLogin}>Retry</Button>
+                </>
+              ) : (
+                <Button onClick={handleRedirect}>Redirect</Button>
+              )}
+            </DialogActions>
+          </>
+        ) : (
+          <PageLoader />
+        )}
       </Dialog>
     </div>
   );

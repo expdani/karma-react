@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useDashboard from '../../hooks/dashboard';
 import PageHelp from '../page/PageHelp';
 import PageLoader from '../page/PageLoader';
@@ -40,7 +40,6 @@ export default function Dashboard(): any {
             borderWidth={1}
             fill={false}
           />
-          {/* <DailyVotes /> */}
         </>
       )}
     </>

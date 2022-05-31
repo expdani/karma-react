@@ -34,7 +34,7 @@ export default function HighlightCard(props: Props) {
       <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
         {primaryNumber}
       </Box>
-      {secondaryNumber ? (
+      {secondaryNumber !== null ? (
         <>
           <Box
             sx={{

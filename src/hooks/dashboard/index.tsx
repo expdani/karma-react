@@ -35,7 +35,9 @@ type HookResponse = {
 };
 
 export default function useDashboard(): HookResponse {
-  const { data, error, loading, refetch } = useQuery(GET_DASHBOARD);
+  const { data, error, loading, refetch } = useQuery(GET_DASHBOARD, {
+    fetchPolicy: 'cache-and-network',
+  });
 
   return {
     data: data?.getDashboard,

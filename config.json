@@ -1,5 +1,6 @@
 {
   "url": "http://localhost:8080/",
+  "api-endpoint": "http://localhost:8080/",
   "oauth": {
     "clientId": "752269862235144265",
     "callbackURL": "http://localhost:8080/discord/callback",
