@@ -1,3 +1,3 @@
-# react-ts-materialui-preset<br/>
+# karma-react<br/>
 To install:<br/>
-npm install
+yarn
