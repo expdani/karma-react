@@ -13,6 +13,7 @@ import App from './App';
 import { AUTH_TOKEN } from './components/constants';
 import theme from './theme';
 
+// TODO: to .env file
 const httpLink = new HttpLink({
   uri: 'http://localhost:3001/graphql',
 });

@@ -9,7 +9,15 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HighlightCard() {
+type Props = {
+  primaryNumber: string | number;
+  secondaryNumber?: string | number;
+  secondaryText?: string;
+  title: string;
+};
+
+export default function HighlightCard(props: Props) {
+  const { primaryNumber, title, secondaryNumber, secondaryText } = props;
   const classes = useStyles();
 
   return (
@@ -22,24 +30,29 @@ export default function HighlightCard() {
         p: 2,
       }}
     >
-      <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+      <Box sx={{ color: 'text.secondary' }}>{title}</Box>
       <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
-        98.3 K
+        {primaryNumber}
       </Box>
-      <Box
-        sx={{
-          color: 'success.dark',
-          display: 'inline',
-          fontWeight: 'bold',
-          mx: 0.5,
-          fontSize: 14,
-        }}
-      >
-        +18.77%
-      </Box>
-      <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}>
-        vs. last week
-      </Box>
+      {secondaryNumber ? (
+        <>
+          <Box
+            sx={{
+              display: 'inline',
+              fontWeight: 'bold',
+              mx: 0.5,
+              fontSize: 14,
+            }}
+          >
+            {secondaryNumber}
+          </Box>
+          <Box
+            sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}
+          >
+            {secondaryText}
+          </Box>
+        </>
+      ) : null}
     </Box>
   );
 }
