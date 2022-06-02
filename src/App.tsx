@@ -6,11 +6,8 @@ import Settings from './components/settings';
 import Login from './components/login';
 import Callback from './components/login/callback';
 import * as routeConfig from './components/routeConfig';
-import useUserDiscordData from './hooks/user/user';
 
 function App(): any {
-  const { data, error, loading } = useUserDiscordData();
-
   return (
     <>
       <Navigation>

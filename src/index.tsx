@@ -15,7 +15,7 @@ import theme from './theme';
 
 // TODO: to .env file
 const httpLink = new HttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: 'http://localhost.nl:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
