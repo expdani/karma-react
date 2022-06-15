@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material';
 import { GuildSettingsType } from '../../../hooks/settings';
 import PropertySwitch from '../../form/PropertySwitch';
 import PageLoader from '../../page/PageLoader';
@@ -11,7 +12,7 @@ type Props = {
   loading: boolean;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   formContainer: {
     display: 'flex',
     maxWidth: '50%',

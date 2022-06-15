@@ -1,5 +1,5 @@
-import { ApolloError, useMutation, useQuery } from '@apollo/client';
-import GET_GUILD_SETTINGS, { UPDATE_GUILD_SETTINGS } from './gql';
+import { ApolloError, useMutation } from '@apollo/client';
+import { UPDATE_GUILD_SETTINGS } from './gql';
 
 export type GuildSettingsType = {
   server_id: string;
@@ -32,7 +32,7 @@ export default function useUpdateGuildSettings(): HookResponse {
     await updateGuildSettings({
       variables: {
         server_id,
-        form: { ...form },
+        form: { random_message_events_enabled: 'teast' },
       },
     });
   }

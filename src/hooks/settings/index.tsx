@@ -17,7 +17,7 @@ type HookResponse = {
   refetch: () => void;
 };
 
-export default function useGetGuildSettings(
+export default function useGuildSettings(
   server_id: string | null
 ): HookResponse {
   const { data, error, loading, refetch } = useQuery(GET_GUILD_SETTINGS, {

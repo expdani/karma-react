@@ -4,12 +4,13 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
-import useGetGuildSettings from '../../../hooks/settings';
+import useGuildSettings from '../../../hooks/settings';
 import PageLoader from '../../page/PageLoader';
 import KarmaSettings from './KarmaSettings';
 import useUpdateGuildSettings from '../../../hooks/settings/save';
 import RandomEventsSettings from './RandomEvents';
 import SubmitButton from '../../form/SubmitButton';
+import useEnqueueSnackbar from '../../../hooks/snackbar';
 
 interface Props {
   children: React.ReactNode;
@@ -50,7 +51,8 @@ function a11yProps(index: number) {
 
 export default function InputForm(props: InputFormProps): any {
   const { selectedGuild } = props;
-  const { data, error, loading } = useGetGuildSettings(selectedGuild);
+  const enqueueSnackbar = useEnqueueSnackbar();
+  const { data, error, loading } = useGuildSettings(selectedGuild);
   const {
     handleUpdate,
     loading: saveLoading,
@@ -70,10 +72,20 @@ export default function InputForm(props: InputFormProps): any {
     setValue(newValue);
   };
 
-  function handleSubmit(event: any): any {
+  async function handleSubmit(event: any): Promise<void> {
     const { server_id, ...settings } = formValues;
     event.preventDefault();
-    handleUpdate(selectedGuild, settings);
+
+    try {
+      await handleUpdate(selectedGuild, settings);
+      enqueueSnackbar('Settings have been saved.', { variant: 'success' });
+    } catch (err) {
+      console.log('asdadas');
+      enqueueSnackbar(
+        'Something went wrong updating your settings, please try again.',
+        { variant: 'error', error: 'error', autoHideDuration: 20000 }
+      );
+    }
   }
 
   useEffect(() => {

@@ -7,6 +7,7 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import ReactDOM from 'react-dom';
+import { SnackbarProvider } from 'notistack';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
@@ -15,7 +16,7 @@ import theme from './theme';
 
 // TODO: to .env file
 const httpLink = new HttpLink({
-  uri: 'http://localhost.nl:3001/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -46,7 +47,16 @@ ReactDOM.render(
   <BrowserRouter>
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <App />
+        <SnackbarProvider
+          maxSnack={3}
+          variant="success"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+        >
+          <App />
+        </SnackbarProvider>
       </ThemeProvider>
     </ApolloProvider>
   </BrowserRouter>,
