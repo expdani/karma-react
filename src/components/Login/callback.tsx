@@ -13,6 +13,7 @@ import useCountDown from 'react-countdown-hook';
 import { useSearchParams } from 'react-router-dom';
 import useDiscordLogin from '../../hooks/login/discordLogin';
 import { AUTH_TOKEN, SESSION_TOKEN } from '../constants';
+import Dashboard from '../dashboard';
 import PageLoader from '../page/PageLoader';
 import Routes from '../routeConfig';
 
@@ -93,11 +94,13 @@ export default function Callback(): React.ReactElement {
   }
 
   return (
-    <div>
+    <>
+      <Dashboard />
       <Dialog
         open={!!true}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        style={{ backdropFilter: 'blur(3px)' }}
       >
         {!loading ? (
           <>
@@ -125,6 +128,6 @@ export default function Callback(): React.ReactElement {
           <PageLoader />
         )}
       </Dialog>
-    </div>
+    </>
   );
 }

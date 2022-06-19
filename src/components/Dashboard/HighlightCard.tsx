@@ -1,13 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   highlight: {
     marginRight: '16px',
     width: '100%',
+
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '8px',
+    },
   },
-});
+}));
 
 type Props = {
   primaryNumber: string | number;

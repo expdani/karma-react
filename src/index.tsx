@@ -7,16 +7,17 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import ReactDOM from 'react-dom';
-import { SnackbarProvider } from 'notistack';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
+import { SnackbarProvider } from 'notistack';
 import App from './App';
 import { AUTH_TOKEN } from './components/constants';
 import theme from './theme';
+import * as config from '../config.json';
 
 // TODO: to .env file
 const httpLink = new HttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: config.endpoint,
 });
 
 const authLink = setContext((_, { headers }) => {

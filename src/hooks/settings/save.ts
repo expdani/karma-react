@@ -32,7 +32,7 @@ export default function useUpdateGuildSettings(): HookResponse {
     await updateGuildSettings({
       variables: {
         server_id,
-        form: { random_message_events_enabled: 'teast' },
+        form,
       },
     });
   }

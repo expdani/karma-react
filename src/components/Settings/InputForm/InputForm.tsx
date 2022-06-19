@@ -53,11 +53,7 @@ export default function InputForm(props: InputFormProps): any {
   const { selectedGuild } = props;
   const enqueueSnackbar = useEnqueueSnackbar();
   const { data, error, loading } = useGuildSettings(selectedGuild);
-  const {
-    handleUpdate,
-    loading: saveLoading,
-    error: saveError,
-  } = useUpdateGuildSettings();
+  const { handleUpdate, loading: saveLoading } = useUpdateGuildSettings();
   const [value, setValue] = useState(0);
   const [formValues, setFormValues] = useState(data);
 
@@ -79,11 +75,14 @@ export default function InputForm(props: InputFormProps): any {
     try {
       await handleUpdate(selectedGuild, settings);
       enqueueSnackbar('Settings have been saved.', { variant: 'success' });
-    } catch (err) {
-      console.log('asdadas');
+    } catch (err: any) {
       enqueueSnackbar(
         'Something went wrong updating your settings, please try again.',
-        { variant: 'error', error: 'error', autoHideDuration: 20000 }
+        {
+          variant: 'error',
+          error: err.networkError.result.errors[0].message,
+          autoHideDuration: 15000,
+        }
       );
     }
   }

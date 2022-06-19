@@ -19,7 +19,10 @@ export default function Dashboard(): any {
           <>
             <div>Welcome!</div>
             {`\n`}
-            <div>Hello there!</div>
+            <div>
+              On this site you will be able to manage the bot settings for your
+              Discord server.
+            </div>
           </>
         }
       />

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useSnackbar as useDefaultSnackbar, OptionsObject } from 'notistack';
 import ErrorSnackbar from '../../components/snackbar/ErrorSnackbar';
 import SimpleAlert from '../../components/snackbar/SimpleAlert';

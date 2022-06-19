@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import {
   BugReport,
-  CheckCircle,
   Close,
   ErrorOutline,
   ExpandMore,
@@ -21,6 +20,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import classNames from 'classnames';
 
+// has to be this way.
 const { SnackbarContent } = require('notistack');
 
 const useStyles = makeStyles((theme: Theme) => ({
