@@ -1,6 +1,9 @@
 # Configs
 config.json
 
+# www
+www
+
 # Logs
 logs
 *.log
