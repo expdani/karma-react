@@ -26,7 +26,17 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: ['ts-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.resolve('./tsconfig.json'),
+            },
+          },
+        ],
       },
       {
         test: /\.(css|scss)$/,
