@@ -1,14 +1,18 @@
 import { createTheme } from '@mui/material';
 
 export const palette = {
-  // primary: {
-  //   main: '#205375',
-  //   contrastDefaultColor: 'light',
-  // },
-  // secondary: {
-  //   main: '#205375',
-  //   contrastDefaultColor: 'light',
-  // },
+  primary: {
+    main: '#205375',
+    contrastDefaultColor: 'light',
+  },
+  secondary: {
+    main: '#205375',
+    contrastDefaultColor: 'light',
+  },
+  gold: {
+    main: '#d4af37',
+    contrastDefaultColor: 'light',
+  },
   // text: {
   //   primary: '#EFEFEF',
   //   secondary: '#EFEFEF',

@@ -6,12 +6,14 @@ import Settings from './components/settings';
 import Login from './components/login';
 import Callback from './components/login/callback';
 import * as routeConfig from './components/routeConfig';
+import Home from './components/homepage';
 
 function App(): any {
   return (
     <>
       <Navigation>
         <Routes>
+          <Route path={routeConfig.default.Home} element={<Home />} />
           <Route path={routeConfig.default.Dashboard} element={<Dashboard />} />
           <Route path={routeConfig.default.Settings} element={<Settings />} />
           <Route path={routeConfig.default.Login} element={<Login />} />

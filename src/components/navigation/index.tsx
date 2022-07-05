@@ -9,10 +9,13 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { CircularProgress } from '@mui/material';
+import { useLocation } from 'react-router';
 import NavItems from './NavItems';
 import NavBar from './NavBar';
 import useUserDiscordData from '../../hooks/user/user';
+import PageLoader from '../page/PageLoader';
+import * as routeConfig from '../routeConfig';
+import { CatchingPokemonSharp } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -87,8 +90,9 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Navigation(props: any) {
   const theme = useTheme();
+  const location = useLocation();
   const { children } = props;
-  const { data, error, loading } = useUserDiscordData();
+  const { data, loading } = useUserDiscordData();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -99,21 +103,7 @@ export default function Navigation(props: any) {
     setOpen(false);
   };
 
-  if (loading)
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100%',
-          width: '100%',
-          position: 'absolute',
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+  if (loading) return <PageLoader />;
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -136,7 +126,16 @@ export default function Navigation(props: any) {
           <NavItems open={open} data={data} />
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, margin: '76px 24px 24px 24px' }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          margin:
+            location.pathname === routeConfig.default.Home
+              ? '76px 24px 24px -64px'
+              : '76px 24px 24px 24px',
+        }}
+      >
         {React.Children.toArray(children)}
       </Box>
     </Box>

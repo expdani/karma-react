@@ -58,7 +58,7 @@ export default function Callback(): React.ReactElement {
       localStorage.setItem(AUTH_TOKEN, data?.access_token);
       start();
       setStarted(true);
-    } else handleLogin(code);
+    } else if (code) handleLogin(code);
   }, [data]);
 
   useEffect(() => {
