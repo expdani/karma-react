@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Carousel from 'react-material-ui-carousel';
+import { Button, Card, Icon, Paper } from '@mui/material';
+import iconKeys from '../icon/iconKeys';
 
 function HomepageContent(): React.ReactElement {
   return (
@@ -35,6 +38,60 @@ function HomepageContent(): React.ReactElement {
   );
 }
 
-export default function Homepage() {
-  return <HomepageContent />;
+export default function Homepage(): React.ReactElement {
+  var items = [
+    {
+      name: 'Random Name #1',
+      description: 'Probably the most random thing you have ever seen!',
+    },
+    {
+      name: 'Random Name #2',
+      description: 'Hello World!',
+    },
+  ];
+
+  const indicatorThumbnails = [
+    <SliderThumb key={1} icon={iconKeys.Home} title="test" />,
+    <SliderThumb key={2} icon={iconKeys.Settings} title="nice gaming" />,
+  ];
+
+  return (
+    <Carousel
+      IndicatorIcon={indicatorThumbnails}
+      indicatorContainerProps={{
+        style: {
+          marginTop: '64px',
+        },
+      }}
+      indicatorIconButtonProps={{
+        style: {
+          margin: '0px 8px 0px 8px',
+        },
+      }}
+    >
+      {items.map((item, i) => (
+        <Item key={i} item={item} />
+      ))}
+    </Carousel>
+  );
+}
+
+function SliderThumb(props: any): React.ReactElement {
+  return (
+    <Card key={props.key} style={{ width: '210px', height: '130px' }}>
+      <Icon>{props.icon}</Icon>
+      <Typography>{props.title}</Typography>
+    </Card>
+  );
+}
+
+function Item(props: any) {
+  return (
+    <Paper>
+      <h2>{props.item.name}</h2>
+      <p>{props.item.description}</p>
+
+      <Button className="CheckButton">Check it out!</Button>
+    </Paper>
+  );
 }

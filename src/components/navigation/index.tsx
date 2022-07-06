@@ -15,7 +15,6 @@ import NavBar from './NavBar';
 import useUserDiscordData from '../../hooks/user/user';
 import PageLoader from '../page/PageLoader';
 import * as routeConfig from '../routeConfig';
-import { CatchingPokemonSharp } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -132,7 +131,7 @@ export default function Navigation(props: any) {
           flexGrow: 1,
           margin:
             location.pathname === routeConfig.default.Home
-              ? '76px 24px 24px -64px'
+              ? '76px 24px 24px 24px'
               : '76px 24px 24px 24px',
         }}
       >
