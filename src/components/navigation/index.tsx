@@ -141,7 +141,7 @@ export default function Navigation(props: any) {
           flexGrow: 1,
           margin:
             location.pathname === routeConfig.default.Home
-              ? '76px 24px 24px 24px'
+              ? '76px 24px 24px -40px'
               : '76px 24px 24px 24px',
         }}
       >
