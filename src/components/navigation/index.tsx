@@ -107,17 +107,26 @@ export default function Navigation(props: any) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar
+        position="fixed"
+        open={open}
+        style={{
+          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent)',
+          boxShadow: 'none',
+        }}
+      >
         <NavBar handleDrawerOpen={handleDrawerOpen} data={data} />
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+            {open ? (
+              theme.direction === 'rtl' ? (
+                <ChevronRightIcon style={{ color: '#fff' }} />
+              ) : (
+                <ChevronLeftIcon style={{ color: '#fff' }} />
+              )
+            ) : null}
           </IconButton>
         </DrawerHeader>
         <Divider />

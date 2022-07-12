@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material';
 
 export const palette = {
   primary: {
-    main: '#205375',
+    main: '#f71953',
     contrastDefaultColor: 'light',
   },
   secondary: {
@@ -13,14 +13,18 @@ export const palette = {
     main: '#d4af37',
     contrastDefaultColor: 'light',
   },
-  // text: {
-  //   primary: '#EFEFEF',
-  //   secondary: '#EFEFEF',
-  // },
-  // background: {
-  //   default: '#191919',
-  //   // paper: '#1167b1',
-  // },
+  discord: {
+    main: '#7289da',
+    contrastDefaultColor: 'light',
+  },
+  text: {
+    primary: '#EFEFEF',
+    secondary: '#83839a',
+  },
+  background: {
+    default: '#191c27',
+    paper: '#1e242f',
+  },
 };
 
 export const font = {

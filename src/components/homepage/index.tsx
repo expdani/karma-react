@@ -38,23 +38,29 @@ function HomepageContent(): React.ReactElement {
   );
 }
 
+const items = [
+  {
+    name: 'Invite Karma',
+    description: "Invite the Discord bot to your server and ",
+  },
+  {
+    name: 'Random Name #2',
+    description: 'Hello World!',
+  },
+];
+
+const indicatorThumbnails = [
+  <SliderThumb color='discord.main' key={1} icon={iconKeys.Home} title="Discord" />,
+  <SliderThumb color='discord.main' key={2} icon={iconKeys.Settings} title="nice gaming" />,
+];
+
 export default function Homepage(): React.ReactElement {
-  var items = [
-    {
-      name: 'Random Name #1',
-      description: 'Probably the most random thing you have ever seen!',
-    },
-    {
-      name: 'Random Name #2',
-      description: 'Hello World!',
-    },
-  ];
+  return (
+    <HomeSlider />
+  );
+}
 
-  const indicatorThumbnails = [
-    <SliderThumb key={1} icon={iconKeys.Home} title="test" />,
-    <SliderThumb key={2} icon={iconKeys.Settings} title="nice gaming" />,
-  ];
-
+function HomeSlider(): React.ReactElement {
   return (
     <Carousel
       IndicatorIcon={indicatorThumbnails}
@@ -78,20 +84,60 @@ export default function Homepage(): React.ReactElement {
 
 function SliderThumb(props: any): React.ReactElement {
   return (
-    <Card key={props.key} style={{ width: '210px', height: '130px' }}>
-      <Icon>{props.icon}</Icon>
-      <Typography>{props.title}</Typography>
+    <Card
+      key={props.key}
+      style={{
+        width: '210px',
+        height: '130px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <Icon style={{ marginBottom: '16px' }}>{props.icon}</Icon>
+      <Typography
+        variant="h5"
+        align="center"
+        color={props.color}
+        style={{
+          fontWeight: 600,
+        }}
+      >
+        {props.title}
+      </Typography>
     </Card>
   );
 }
 
 function Item(props: any) {
   return (
-    <Paper>
-      <h2>{props.item.name}</h2>
-      <p>{props.item.description}</p>
-
-      <Button className="CheckButton">Check it out!</Button>
-    </Paper>
+    <Container
+      disableGutters
+      maxWidth="sm"
+      component="main"
+      sx={{ pt: 8, pb: 6 }}
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+        align="center"
+        color="text.primary"
+        gutterBottom
+        style={{
+          fontWeight: 600,
+        }}
+      >
+        {props.item.name}
+      </Typography>
+      <Typography
+        variant="h5"
+        align="center"
+        color="text.secondary"
+        component="p"
+      >
+        {props.item.description}
+      </Typography>
+    </Container>
   );
 }
