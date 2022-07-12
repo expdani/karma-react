@@ -45,7 +45,7 @@ export default function Callback(): React.ReactElement {
 
   function handleLogout(): void {
     localStorage.removeItem(AUTH_TOKEN);
-    window.location.href = Routes.Dashboard;
+    window.location.href = Routes.Home;
   }
 
   function retryLogin(): void {

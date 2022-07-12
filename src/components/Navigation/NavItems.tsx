@@ -34,7 +34,7 @@ export default function NavItems(props: any) {
                   justifyContent: 'center',
                 }}
               >
-                <Icon>{icon}</Icon>
+                <Icon style={{color: '#fff'}}>{icon}</Icon>
               </ListItemIcon>
               <ListItemText
                 primary={item.title}

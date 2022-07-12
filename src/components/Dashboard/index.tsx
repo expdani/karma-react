@@ -20,8 +20,8 @@ export default function Dashboard(): any {
             <div>Welcome!</div>
             {`\n`}
             <div>
-              On this site you will be able to manage the bot settings for your
-              Discord server.
+              On this site you are able to manage the bot its settings for your
+              Discord server. Personalize it as you like!
             </div>
           </>
         }

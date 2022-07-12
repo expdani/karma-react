@@ -15,7 +15,6 @@ import NavBar from './NavBar';
 import useUserDiscordData from '../../hooks/user/user';
 import PageLoader from '../page/PageLoader';
 import * as routeConfig from '../routeConfig';
-import { CatchingPokemonSharp } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -108,17 +107,26 @@ export default function Navigation(props: any) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar
+        position="fixed"
+        open={open}
+        style={{
+          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent)',
+          boxShadow: 'none',
+        }}
+      >
         <NavBar handleDrawerOpen={handleDrawerOpen} data={data} />
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+            {open ? (
+              theme.direction === 'rtl' ? (
+                <ChevronRightIcon style={{ color: '#fff' }} />
+              ) : (
+                <ChevronLeftIcon style={{ color: '#fff' }} />
+              )
+            ) : null}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -132,7 +140,7 @@ export default function Navigation(props: any) {
           flexGrow: 1,
           margin:
             location.pathname === routeConfig.default.Home
-              ? '76px 24px 24px -64px'
+              ? '76px 24px 24px 24px'
               : '76px 24px 24px 24px',
         }}
       >
