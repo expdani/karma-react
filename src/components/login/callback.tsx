@@ -20,7 +20,7 @@ import Routes from '../routeConfig';
 const useStyles = makeStyles({
   loginText: {
     fontSize: '20px',
-    color: 'black',
+    color: 'font.primary',
   },
 
   redirectText: {
@@ -45,7 +45,7 @@ export default function Callback(): React.ReactElement {
 
   function handleLogout(): void {
     localStorage.removeItem(AUTH_TOKEN);
-    window.location.href = Routes.Dashboard;
+    window.location.href = Routes.Home;
   }
 
   function retryLogin(): void {
@@ -58,7 +58,7 @@ export default function Callback(): React.ReactElement {
       localStorage.setItem(AUTH_TOKEN, data?.access_token);
       start();
       setStarted(true);
-    } else handleLogin(code);
+    } else if (code) handleLogin(code);
   }, [data]);
 
   useEffect(() => {

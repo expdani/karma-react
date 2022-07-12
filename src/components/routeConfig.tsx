@@ -13,7 +13,8 @@ const loginUrl =
   )}`;
 
 const Routes: Route = Object.freeze({
-  Dashboard: '/',
+  Home: '/',
+  Dashboard: '/dashboard',
   Settings: '/settings',
   Callback_$CODE: '/discord/callback',
   DiscordLogin: loginUrl,

@@ -25,7 +25,7 @@ export default function NavBar(props: any) {
       </IconButton>
       <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
         <Typography variant="h6" noWrap component="div" style={{ flex: '1' }}>
-          Discord bot
+          Karma
         </Typography>
         <>{data ? <UserButton data={data} /> : <LoginButton />}</>
       </div>

@@ -11,6 +11,11 @@ export type NavItem = {
 function navItems(data?: DiscordUserType | null | undefined): NavItem[] {
   return [
     {
+      icon: iconKeys.Home,
+      title: 'Home',
+      route: Routes.Home,
+    },
+    {
       icon: iconKeys.Dashboard,
       title: 'Dashboard',
       route: Routes.Dashboard,

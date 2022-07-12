@@ -1,6 +1,5 @@
 import { ApolloError, useQuery } from '@apollo/client';
 import { AUTH_TOKEN } from '../../components/constants';
-import Routes from '../../components/routeConfig';
 import { GET_USER_DISCORD_DATA } from './gql';
 
 export type DiscordUserType = {
@@ -24,7 +23,7 @@ type HookResponse = {
 export default function useUserDiscordData(): HookResponse {
   const { data, error, loading } = useQuery(GET_USER_DISCORD_DATA);
 
-  if (error?.message) {
+  if (error) {
     localStorage.removeItem(AUTH_TOKEN);
   }
 

@@ -4,6 +4,10 @@ export type iconKey = {
 
 const iconKeys: iconKey = Object.freeze({
   Dashboard: 'dashboard',
+  Home: 'home',
+  Money: 'savings',
+  Discord: 'discord',
+  Minigames: 'casino',
   Settings: 'settings',
   Save: 'save',
   Help: 'help',
