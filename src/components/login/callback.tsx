@@ -20,7 +20,7 @@ import Routes from '../routeConfig';
 const useStyles = makeStyles({
   loginText: {
     fontSize: '20px',
-    color: 'black',
+    color: 'font.primary',
   },
 
   redirectText: {

@@ -14,7 +14,7 @@ export default function SubmitButton(props: Props): any {
 
   return (
     <LoadingButton
-      color="secondary"
+      color="success"
       loading={loading}
       loadingPosition="start"
       startIcon={<Icon>{iconKeys.Save}</Icon>}

@@ -14,6 +14,12 @@ type Props = {
 const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: '16px',
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#fff',
+    },
+
+    color: '#fff',
+    fill: '#fff',
   },
 }));
 
@@ -27,7 +33,7 @@ export default function ServerSelect(props: Props) {
 
   return (
     <Autocomplete
-      className={classes.root}
+      classes={{ inputRoot: classes.root }}
       id="country-select-demo"
       sx={{ width: 300 }}
       options={availableGuilds}
@@ -68,7 +74,7 @@ export default function ServerSelect(props: Props) {
           label="Select a server to edit"
           inputProps={{
             ...params.inputProps,
-            autoComplete: 'new-password', // disable autocomplete and autofill
+            // autoComplete: 'new-password', // disable autocomplete and autofill
           }}
         />
       )}

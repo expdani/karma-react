@@ -10,7 +10,6 @@ type Props = {
 const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: '32px',
-    color: 'black',
   },
 }));
 
@@ -19,12 +18,7 @@ function PageHelp(props: Props): any {
   const classes = useStyles();
 
   return (
-    <Typography
-      component="p"
-      color="text.secondary"
-      gutterBottom
-      className={classes.root}
-    >
+    <Typography component="p" color="text.secondary" className={classes.root}>
       {helpText}
     </Typography>
   );

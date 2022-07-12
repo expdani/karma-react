@@ -111,7 +111,8 @@ export default function Navigation(props: any) {
         position="fixed"
         open={open}
         style={{
-          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent)',
+          background:
+            'linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent)',
           boxShadow: 'none',
         }}
       >
